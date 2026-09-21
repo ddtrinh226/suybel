@@ -33,7 +33,7 @@
       position: relative;
     }
 
-    /* Video Background */
+    /* Video Background ngoài màn hình */
     .bg-video {
       position: fixed;
       top: 0;
@@ -44,7 +44,6 @@
       z-index: -2;
     }
 
-    /* Lớp phủ mờ nhẹ trên video giúp nội dung nổi bật hơn */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -106,8 +105,11 @@
       z-index: 1;
     }
 
+    /* Đã khôi phục lại ảnh nền bg-profile.jpg bên trong card */
     .profile-card {
       text-align: center;
+      background: linear-gradient(rgba(255, 253, 252, 0.65), rgba(255, 253, 252, 0.82)), 
+                  url('bg-profile.jpg') center/cover no-repeat !important;
     }
 
     .avatar-wrapper {
@@ -452,10 +454,9 @@
 </head>
 <body>
 
-  <!-- Video Background -->
+  <!-- Video Background ngoài màn hình -->
   <video class="bg-video" autoplay loop muted playsinline>
     <source src="bg-video.mp4" type="video/mp4">
-    Trình duyệt của bạn không hỗ trợ thẻ video.
   </video>
   <div class="bg-overlay"></div>
 
