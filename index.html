@@ -28,17 +28,33 @@
       justify-content: center;
       align-items: center;
       padding: 30px 14px 40px;
-      background: linear-gradient(-45deg, #C6D2FD, #FAD2E1, #FDE2E4, #E2ECE9);
-      background-size: 300% 300%;
-      animation: softGradient 14s ease infinite;
       overflow-x: hidden;
       color: var(--text-dark);
+      position: relative;
     }
 
-    @keyframes softGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Video Background */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Lớp phủ mờ nhẹ trên video giúp nội dung nổi bật hơn */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(198, 210, 253, 0.25);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: -1;
     }
 
     .container {
@@ -48,6 +64,7 @@
       flex-direction: column;
       gap: 16px;
       align-items: center;
+      z-index: 1;
     }
 
     .card-border-wrapper {
@@ -91,8 +108,6 @@
 
     .profile-card {
       text-align: center;
-      background: linear-gradient(rgba(255, 253, 252, 0.65), rgba(255, 253, 252, 0.82)), 
-                  url('bg-profile.jpg') center/cover no-repeat !important;
     }
 
     .avatar-wrapper {
@@ -182,7 +197,6 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      /* Tăng độ trong suốt cho khung Donate (0.65 thay vì 0.92) */
       background: rgba(255, 255, 255, 0.65);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -208,7 +222,6 @@
     }
 
     .qr-box-donate {
-      /* Tăng độ trong suốt cho khung chứa mã QR (0.75 thay vì 1.0) */
       background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -309,7 +322,6 @@
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
       width: 100%;
-      /* Tăng độ trong suốt cho các nút liên kết (0.8 thay vì 0.92) */
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -439,6 +451,13 @@
   </style>
 </head>
 <body>
+
+  <!-- Video Background -->
+  <video class="bg-video" autoplay loop muted playsinline>
+    <source src="bg-video.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ thẻ video.
+  </video>
+  <div class="bg-overlay"></div>
 
   <div class="container">
     <div class="card-border-wrapper">
