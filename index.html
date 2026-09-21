@@ -59,8 +59,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 25px 50px rgba(90, 78, 92, 0.16),
-                  0 0 30px rgba(250, 210, 225, 0.6);
+      box-shadow: 0 25px 50px rgba(90, 78, 92, 0.18),
+                  0 0 30px rgba(250, 210, 225, 0.7);
     }
 
     .card-border-wrapper::before {
@@ -80,9 +80,10 @@
     .card {
       position: relative;
       width: 100%;
-      background-color: rgba(255, 253, 252, 0.92);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      /* Làm trong suốt hơn để thấy rõ background phía sau */
+      background-color: rgba(255, 253, 252, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 30px;
       padding: 32px 22px;
       color: var(--text-dark);
@@ -91,7 +92,7 @@
 
     .profile-card {
       text-align: center;
-      background: linear-gradient(rgba(255, 253, 252, 0.90), rgba(255, 253, 252, 0.96)), 
+      background: linear-gradient(rgba(255, 253, 252, 0.65), rgba(255, 253, 252, 0.82)), 
                   url('bg-profile.jpg') center/cover no-repeat !important;
     }
 
@@ -134,22 +135,24 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      color: #7b6880;
-      text-shadow: 0 2px 10px rgba(198, 210, 253, 0.4);
+      color: #6a5770;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
     }
 
     .bio {
       font-size: 0.95rem;
-      color: #7d6f82;
+      color: #594a5e;
       margin-bottom: 22px;
       line-height: 1.5;
+      font-weight: 500;
+      text-shadow: 0 1px 6px rgba(255, 255, 255, 0.6);
     }
 
     .custom-heart {
       display: inline-block;
       vertical-align: middle;
       font-style: normal;
-      color: #e09fbe;
+      color: #d67ba8;
     }
 
     .donate-neon-wrapper {
@@ -162,8 +165,8 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(90, 78, 92, 0.06),
-                  0 0 15px rgba(198, 210, 253, 0.4);
+      box-shadow: 0 10px 25px rgba(90, 78, 92, 0.08),
+                  0 0 15px rgba(198, 210, 253, 0.5);
     }
 
     .donate-neon-wrapper::before {
@@ -180,7 +183,7 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border-radius: 22px;
@@ -258,7 +261,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(198, 210, 253, 0.25);
+      background: rgba(198, 210, 253, 0.3);
       padding: 5px 12px;
       border-radius: 10px;
       border: 1px solid var(--pastel-blue);
@@ -266,8 +269,8 @@
     }
 
     .btn-copy-stk {
-      background: #8fa3f8;
-      border: 1px solid #8fa3f8;
+      background: #7994f7;
+      border: 1px solid #7994f7;
       color: #fff;
       padding: 4px 10px;
       border-radius: 7px;
@@ -303,16 +306,16 @@
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
       width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--text-dark);
       border: 1.5px solid var(--pastel-blue);
-      box-shadow: 0 4px 15px rgba(90, 78, 92, 0.04);
+      box-shadow: 0 4px 15px rgba(90, 78, 92, 0.05);
     }
 
     .btn-link:hover {
       background: var(--pastel-blue);
       color: #433647;
-      border-color: #8fa3f8;
+      border-color: #7994f7;
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(198, 210, 253, 0.5);
     }
@@ -323,11 +326,109 @@
       fill: currentColor;
     }
 
+    /* POPUP DISCORD */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(90, 78, 92, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .discord-modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 253, 252, 0.96);
+      border: 2px solid var(--pastel-blue);
+      border-radius: 26px;
+      padding: 26px 20px;
+      text-align: center;
+      color: var(--text-dark);
+      box-shadow: 0 20px 40px rgba(90, 78, 92, 0.25);
+      animation: modalScaleUp 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes modalScaleUp {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .discord-modal-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #5c6bc0;
+      margin-bottom: 6px;
+    }
+
+    .discord-modal-desc {
+      font-size: 0.84rem;
+      color: #8c7d91;
+      margin-bottom: 18px;
+    }
+
+    .discord-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-discord-option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #7289da;
+      color: #ffffff;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(114, 137, 218, 0.3);
+    }
+
+    .btn-discord-option:hover {
+      background: #5b73c7;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(114, 137, 218, 0.45);
+    }
+
+    .btn-close-discord {
+      width: 100%;
+      padding: 10px 0;
+      border-radius: 12px;
+      background: rgba(198, 210, 253, 0.2);
+      border: 1px solid var(--pastel-blue);
+      color: #7d6f82;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-close-discord:hover {
+      background: rgba(198, 210, 253, 0.5);
+      color: var(--text-dark);
+    }
+
     .footer {
       margin-top: 16px;
       font-size: 0.78rem;
-      color: #9d8eA3;
+      color: #7a6a7c;
       text-align: center;
+      font-weight: 600;
+      text-shadow: 0 1px 5px rgba(255, 255, 255, 0.6);
     }
   </style>
 </head>
@@ -373,9 +474,10 @@
             <i class="fa-brands fa-tiktok" style="color: #b56580;"></i> Kênh TikTok (@ddtrinh226)
           </a>
 
-          <a href="https://discord.com/invite/HfpRPsNwfq" target="_blank" rel="noopener noreferrer" class="btn-link">
+          <!-- Nút mở Popup Discord -->
+          <button type="button" class="btn-link" onclick="openDiscordModal()" style="border: none; width: 100%;">
             <i class="fa-brands fa-discord" style="color: #7289da;"></i> Tham gia Server Discord
-          </a>
+          </button>
 
           <a href="https://zypage.com/trinh2262000" target="_blank" rel="noopener noreferrer" class="btn-link">
             <svg class="zypage-icon" viewBox="0 0 24 24" style="color: #b56580;">
@@ -392,7 +494,36 @@
     </div>
   </div>
 
+  <!-- POPUP CHỌN SERVER DISCORD -->
+  <div id="discordModal" class="modal-overlay" onclick="closeDiscordModal(event)">
+    <div class="discord-modal-box" onclick="event.stopPropagation()">
+      <h3 class="discord-modal-title"><i class="fa-brands fa-discord"></i> Chọn Server Discord</h3>
+      <p class="discord-modal-desc">Bạn muốn ghé thăm server nào dưới đây nè?</p>
+      
+      <div class="discord-options">
+        <a href="https://discord.com/invite/HfpRPsNwfq" target="_blank" rel="noopener noreferrer" class="btn-discord-option">
+          <i class="fa-solid fa-server"></i> Server Discord Chính
+        </a>
+        <a href="https://discord.gg/RDZB9ke7f8" target="_blank" rel="noopener noreferrer" class="btn-discord-option" style="background: #9b59b6;">
+          <i class="fa-solid fa-users"></i> Server Discord Thêm (RDZB9ke7f8)
+        </a>
+      </div>
+
+      <button type="button" class="btn-close-discord" onclick="closeDiscordModal()">Đóng lại</button>
+    </div>
+  </div>
+
   <script>
+    function openDiscordModal() {
+      document.getElementById('discordModal').classList.add('active');
+    }
+
+    function closeDiscordModal(event) {
+      if (!event || event.target.id === 'discordModal' || event.target.classList.contains('btn-close-discord')) {
+        document.getElementById('discordModal').classList.remove('active');
+      }
+    }
+
     function copySTK(btn) {
       const stkClean = "6354065424";
       if (navigator.clipboard) {
