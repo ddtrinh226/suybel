@@ -41,7 +41,7 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
-      z-index: -2;
+      z-index: -3;
     }
 
     .bg-overlay {
@@ -53,7 +53,45 @@
       background: rgba(198, 210, 253, 0.25);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
+      z-index: -2;
+    }
+
+    /* Hiệu ứng cánh hoa anh đào rơi */
+    .sakura-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
       z-index: -1;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 100%);
+      border-radius: 150% 0 150% 0;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      box-shadow: 0 0 6px rgba(255, 183, 197, 0.6);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      90% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) translateX(100vw) rotate(360deg);
+        opacity: 0;
+      }
     }
 
     .container {
@@ -93,7 +131,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Khung thẻ chính tăng độ trong suốt */
     .card {
       position: relative;
       width: 100%;
@@ -152,7 +189,7 @@
       justify-content: center;
       gap: 6px;
       color: #4e3d54;
-      text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(244, 199, 205, 0.6);
     }
 
     .bio {
@@ -161,7 +198,7 @@
       margin-bottom: 22px;
       line-height: 1.5;
       font-weight: 600;
-      text-shadow: 0 1px 6px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 15px rgba(198, 210, 253, 0.5);
     }
 
     .custom-heart {
@@ -195,7 +232,6 @@
       z-index: 0;
     }
 
-    /* Khung Donate tăng độ trong suốt */
     .donate-box {
       position: relative;
       z-index: 1;
@@ -226,7 +262,6 @@
       font-weight: 500;
     }
 
-    /* Khung chứa mã QR tăng độ trong suốt */
     .qr-box-donate {
       background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(8px);
@@ -315,7 +350,6 @@
       margin-bottom: 16px;
     }
 
-    /* Các nút liên kết tăng độ trong suốt */
     .btn-link {
       position: relative;
       display: flex;
@@ -336,6 +370,25 @@
       color: var(--text-dark);
       border: 1.5px solid rgba(198, 210, 253, 0.6);
       box-shadow: 0 4px 15px rgba(90, 78, 92, 0.05);
+      overflow: hidden;
+    }
+
+    .btn-link::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -80%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      transform: rotate(25deg);
+      pointer-events: none;
+      transition: none;
+    }
+
+    .btn-link:hover::after {
+      left: 130%;
+      transition: left 0.7s ease-in-out;
     }
 
     .btn-link:hover {
@@ -466,6 +519,9 @@
   </video>
   <div class="bg-overlay"></div>
 
+  <!-- Hiệu ứng cánh hoa anh đào rơi -->
+  <div class="sakura-container" id="sakuraContainer"></div>
+
   <div class="container">
     <div class="card-border-wrapper">
       <div class="card profile-card">
@@ -503,18 +559,23 @@
 
         <div class="social-links">
           <a href="https://www.tiktok.com/@ddtrinh226" target="_blank" rel="noopener noreferrer" class="btn-link">
-            <i class="fa-brands fa-tiktok" style="color: #b56580;"></i> Kênh TikTok (@ddtrinh226)
+            <i class="fa-brands fa-tiktok" style="color: #b56580;"></i> Oh my toptop (@ddtrinh226)
           </a>
 
           <button type="button" class="btn-link" onclick="openDiscordModal()" style="border: none; width: 100%;">
             <i class="fa-brands fa-discord" style="color: #7289da;"></i> Tham gia Server Discord
           </button>
 
+          <!-- Thêm liên kết trang cá nhân Discord -->
+          <a href="https://discord.com/users/1063690812006875217" target="_blank" rel="noopener noreferrer" class="btn-link">
+            <i class="fa-brands fa-discord" style="color: #7289da;"></i> Trang cá nhân Discord
+          </a>
+
           <a href="https://zypage.com/trinh2262000" target="_blank" rel="noopener noreferrer" class="btn-link">
             <svg class="zypage-icon" viewBox="0 0 24 24" style="color: #b56580;">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M7 2H16C17.6569 2 19 3.34315 19 5V8H21C22.1046 8 23 8.89543 23 10V19C23 20.6569 21.6569 22 20 22H11C9.34315 22 8 20.6569 8 19V16H5C3.89543 16 3 15.1046 3 14V5C3 3.34315 4.34315 2 6 2H7ZM8 8V5C8 4.44772 7.55228 4 7 4H6C5.44772 4 5 4.44772 5 5V14C5 14.5523 5.44772 15 6 15H8V11C8 9.34315 9.34315 8 11 8H16V5C16 4.44772 15.5523 4 15 4H8ZM11 10C10.4477 10 10 10.4477 10 11V19C10 19.5523 10.4477 20 11 20H20C20.5523 20 21 19.5523 21 19V10C21 9.44772 20.5523 9 20 9H12C11.4477 9 11 9.44772 11 10ZM13 12H18V17H13V12Z" />
             </svg>
-            Trang ZyPage (zypage.com/trinh2262000)
+            Hỗ trợ e si bánh mì
           </a>
         </div>
 
@@ -536,7 +597,7 @@
           <i class="fa-solid fa-server"></i> Server Discord Chính
         </a>
         <a href="https://discord.gg/RDZB9ke7f8" target="_blank" rel="noopener noreferrer" class="btn-discord-option" style="background: #9b59b6;">
-          <i class="fa-solid fa-users"></i> Server Discord Thêm (RDZB9ke7f8)
+          <i class="fa-solid fa-users"></i> Server Discord Thêm 
         </a>
       </div>
 
@@ -545,6 +606,31 @@
   </div>
 
   <script>
+    /* Tự động sinh hiệu ứng cánh hoa anh đào rơi */
+    function createSakuraPetals() {
+      const container = document.getElementById('sakuraContainer');
+      if (!container) return;
+
+      const petalCount = 22;
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        const size = Math.random() * 8 + 8;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 0.8}px`;
+        petal.style.left = `${Math.random() * 100}vw`;
+        
+        const duration = Math.random() * 6 + 6;
+        const delay = Math.random() * 8;
+        petal.style.animationDuration = `${duration}s`;
+        petal.style.animationDelay = `${delay}s`;
+
+        container.appendChild(petal);
+      }
+    }
+    createSakuraPetals();
+
     function openDiscordModal() {
       document.getElementById('discordModal').classList.add('active');
     }
