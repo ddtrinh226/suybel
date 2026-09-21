@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -78,6 +79,8 @@
       align-items: center;
       box-shadow: 0 25px 50px rgba(90, 78, 92, 0.22),
                   0 0 30px rgba(250, 210, 225, 0.7);
+      /* Đảm bảo transition mượt mà cho hiệu ứng tan biến và xuất hiện */
+      transition: opacity 0.5s ease;
     }
 
     .card-border-wrapper::before {
@@ -119,7 +122,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 180px; /* Vùng phía trên avatar và tiêu đề */
+      height: 180px;
       pointer-events: none;
       z-index: 4;
       overflow: hidden;
@@ -163,12 +166,8 @@
     .cloud-2::after { width: 40px; height: 40px; top: -18px; left: 50px; }
 
     @keyframes driftClouds {
-      0% {
-        transform: translateX(-160px);
-      }
-      100% {
-        transform: translateX(520px);
-      }
+      0% { transform: translateX(-160px); }
+      100% { transform: translateX(520px); }
     }
 
     .avatar-wrapper {
@@ -541,6 +540,112 @@
       position: relative;
       z-index: 6;
     }
+
+    /* Hiệu ứng tan biến dần từ dưới lên theo thời gian thực (clip-path bottom-up) */
+    .dissolving-bottom-up {
+      animation: dissolveBottomUpProgressive 3.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+    }
+
+    @keyframes dissolveBottomUpProgressive {
+      0% {
+        clip-path: inset(0 0 0% 0);
+        opacity: 1;
+        transform: translateY(0);
+      }
+      30% {
+        clip-path: inset(0 0 25% 0);
+        opacity: 0.95;
+        transform: translateY(-2px);
+      }
+      65% {
+        clip-path: inset(0 0 70% 0);
+        opacity: 0.7;
+        transform: translateY(-8px);
+      }
+      95% {
+        clip-path: inset(0 0 98% 0);
+        opacity: 0.2;
+        transform: translateY(-15px);
+      }
+      100% {
+        clip-path: inset(0 0 100% 0);
+        opacity: 0;
+        transform: translateY(-20px);
+        visibility: hidden;
+      }
+    }
+
+    /* Vùng chứa hoa anh đào bay lên từ dưới */
+    .sakura-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99999;
+      overflow: hidden;
+    }
+
+    .sakura-petal {
+      position: absolute;
+      background: linear-gradient(135deg, #ffb7c5 0%, #ff8da1 100%);
+      border-radius: 150% 0 150% 0;
+      opacity: 0.9;
+      animation: sakuraRise linear forwards;
+      box-shadow: 0 0 8px rgba(255, 183, 197, 0.8);
+    }
+
+    @keyframes sakuraRise {
+      0% {
+        transform: translateY(20px) translateX(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-105vh) translateX(90px) rotate(360deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* Nút xuất hiện sau khi trang đã tan biến hoàn toàn */
+    .return-home-btn-wrapper {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100000;
+      animation: fadeInCenter 0.6s ease forwards;
+    }
+
+    .btn-return-home {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 2px solid var(--pastel-pink);
+      color: #a34c6e;
+      padding: 12px 28px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(90, 78, 92, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .btn-return-home:hover {
+      background: var(--pastel-pink);
+      color: #4a3e4d;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(250, 210, 225, 0.6);
+    }
+
+    @keyframes fadeInCenter {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -552,7 +657,7 @@
   <div class="bg-overlay"></div>
 
   <div class="container">
-    <div class="card-border-wrapper">
+    <div id="cardBorderWrapper" class="card-border-wrapper">
       <div class="card profile-card">
         
         <!-- Đám mây xế chiều trôi nhẹ nhàng ở phần trên -->
@@ -612,6 +717,11 @@
             </svg>
             Hỗ trợ e si bánh mì
           </a>
+
+          <!-- Nút kích hoạt điều bất ngờ cánh hoa tan biến từ dưới lên -->
+          <button type="button" class="btn-link" onclick="triggerBottomUpDissolve()" style="border: 2px dashed #f472b6; background: rgba(253, 226, 228, 0.65);">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #ec4899;"></i> Điều bất ngờ 🌸
+          </button>
         </div>
 
         <div class="footer">
@@ -620,6 +730,16 @@
       </div>
     </div>
   </div>
+
+  <!-- Nút Trở lại Profile hiện lên khi tan biến xong -->
+  <div id="returnHomeWrapper" class="return-home-btn-wrapper">
+    <button type="button" class="btn-return-home" onclick="resetProfileCard()">
+      <i class="fa-solid fa-rotate-left"></i> Trở lại Profile 🌸
+    </button>
+  </div>
+
+  <!-- Container chứa hoa anh đào bay -->
+  <div id="sakuraContainer" class="sakura-container"></div>
 
   <!-- POPUP CHỌN SERVER DISCORD -->
   <div id="discordModal" class="modal-overlay" onclick="closeDiscordModal(event)">
@@ -698,6 +818,71 @@
       }
       imageObj.src = srcToFetch;
     }
+
+    // Hiệu ứng tan biến từ dưới lên đồng bộ với hoa anh đào bay lên liên tục theo từng nhịp tan biến
+    function triggerBottomUpDissolve() {
+      const cardWrapper = document.getElementById('cardBorderWrapper');
+      const container = document.getElementById('sakuraContainer');
+      const returnBtn = document.getElementById('returnHomeWrapper');
+
+      if (!cardWrapper || cardWrapper.classList.contains('dissolving-bottom-up')) return;
+
+      cardWrapper.classList.add('dissolving-bottom-up');
+      returnBtn.style.display = 'none';
+
+      // Tạo hoa anh đào bay liên tục bám sát đường biên tan biến (tổng thời gian 3.2 giây)
+      let count = 0;
+      const interval = setInterval(() => {
+        if (count > 25) {
+          clearInterval(interval);
+          return;
+        }
+        count++;
+
+        // Tạo nhiều cánh hoa cùng lúc rải đều theo chiều ngang màn hình dưới đáy card
+        for (let k = 0; k < 4; k++) {
+          const petal = document.createElement('div');
+          petal.classList.add('sakura-petal');
+
+          const posX = (window.innerWidth / 2 - 220) + Math.random() * 440;
+          const size = Math.floor(Math.random() * 10) + 8;
+          const duration = Math.random() * 1.2 + 1.2;
+
+          petal.style.left = posX + 'px';
+          petal.style.bottom = '20px';
+          petal.style.width = size + 'px';
+          petal.style.height = (size * 0.7) + 'px';
+          petal.style.animationDuration = duration + 's';
+
+          container.appendChild(petal);
+
+          setTimeout(() => {
+            petal.remove();
+          }, duration * 1000);
+        }
+      }, 120);
+
+      // Sau khi hiệu ứng tan biến hoàn tất (3.2s), hiển thị nút "Trở lại Profile"
+      setTimeout(() => {
+        returnBtn.style.display = 'block';
+      }, 3300);
+    }
+
+    // Phục hồi lại profile card mượt mà
+    function resetProfileCard() {
+      const cardWrapper = document.getElementById('cardBorderWrapper');
+      const returnBtn = document.getElementById('returnHomeWrapper');
+
+      returnBtn.style.display = 'none';
+      cardWrapper.style.opacity = '0';
+      cardWrapper.classList.remove('dissolving-bottom-up');
+
+      setTimeout(() => {
+        cardWrapper.style.transition = 'opacity 0.6s ease';
+        cardWrapper.style.opacity = '1';
+      }, 50);
+    }
   </script>
 </body>
 </html>
+```
