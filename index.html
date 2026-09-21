@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suy 🧸 💜 Profile Bio</title>
+  <link rel="icon" href="avatar.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg-soft: #FDF8F5;
+      --primary-pink: #F4C7CD;
+      --text-dark: #4A3E3D;
+      --accent-pink: #E36573;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 14px 40px;
+      background: linear-gradient(-45deg, #FDF8F5, #F4C7CD, #fae1dc, #FDF8F5);
+      background-size: 300% 300%;
+      animation: softGradient 12s ease infinite;
+      overflow-x: hidden;
+      color: var(--text-dark);
+    }
+
+    @keyframes softGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .card-border-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 30px;
+      padding: 3px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 20px 40px rgba(74, 62, 61, 0.12),
+                  0 0 20px rgba(244, 199, 205, 0.5);
+    }
+
+    .card-border-wrapper::before {
+      content: "";
+      position: absolute;
+      width: 160%;
+      height: 160%;
+      background: conic-gradient(var(--primary-pink), var(--accent-pink), #ffffff, var(--primary-pink));
+      animation: spin 6s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      background-color: rgba(253, 248, 245, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 30px 20px;
+      color: var(--text-dark);
+      z-index: 1;
+    }
+
+    .profile-card {
+      text-align: center;
+      background: linear-gradient(rgba(253, 248, 245, 0.88), rgba(253, 248, 245, 0.94)), 
+                  url('bg-profile.jpg') center/cover no-repeat !important;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 16px;
+    }
+
+    .avatar-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--accent-pink), var(--primary-pink));
+      z-index: 0;
+      animation: spin 3.5s linear infinite;
+      filter: blur(2px);
+    }
+
+    .avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-soft);
+      z-index: 1;
+      background-color: #f0e6e2;
+    }
+
+    .channel-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--accent-pink);
+      text-shadow: 0 2px 10px rgba(227, 101, 115, 0.2);
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      color: #6e5f5e;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .custom-heart {
+      display: inline-block;
+      vertical-align: middle;
+      font-style: normal;
+      color: var(--accent-pink);
+    }
+
+    .donate-neon-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 22px;
+      padding: 2.5px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 25px rgba(74, 62, 61, 0.08),
+                  0 0 15px rgba(244, 199, 205, 0.4);
+    }
+
+    .donate-neon-wrapper::before {
+      content: "";
+      position: absolute;
+      width: 180%;
+      height: 180%;
+      background: conic-gradient(var(--accent-pink), var(--primary-pink), #ffffff, var(--accent-pink));
+      animation: spin 4s linear infinite;
+      z-index: 0;
+    }
+
+    .donate-box {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 22px 16px;
+    }
+
+    .donate-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--accent-pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .donate-desc {
+      font-size: 0.88rem;
+      color: #7a6a68;
+      margin-bottom: 16px;
+    }
+
+    .qr-box-donate {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 8px;
+      display: inline-block;
+      box-shadow: 0 4px 16px rgba(74, 62, 61, 0.1);
+      border: 1px solid var(--primary-pink);
+    }
+
+    .qr-img-donate {
+      width: 200px;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .btn-download-qr {
+      margin-top: 12px;
+      background: rgba(227, 101, 115, 0.1);
+      border: 1px solid var(--accent-pink);
+      color: var(--accent-pink);
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-download-qr:hover {
+      background: var(--accent-pink);
+      color: #fff;
+    }
+
+    .bank-details {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: #6e5f5e;
+      line-height: 1.6;
+    }
+
+    .bank-details strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .stk-copy-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244, 199, 205, 0.25);
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--primary-pink);
+      margin-top: 4px;
+    }
+
+    .btn-copy-stk {
+      background: var(--accent-pink);
+      border: 1px solid var(--accent-pink);
+      color: #fff;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy-stk:hover {
+      opacity: 0.9;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .btn-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--text-dark);
+      border: 1.5px solid var(--primary-pink);
+      box-shadow: 0 4px 12px rgba(74, 62, 61, 0.05);
+    }
+
+    .btn-link:hover {
+      background: var(--accent-pink);
+      color: #ffffff;
+      border-color: var(--accent-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(227, 101, 115, 0.25);
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: #8c7a78;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card-border-wrapper">
+      <div class="card profile-card">
+        <div class="avatar-wrapper">
+          <img src="avatar.jpg" alt="Avatar" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Suy&background=F4C7CD&color=4A3E3D'">
+        </div>
+
+        <h1 class="channel-name">Suy 🧸 💜</h1>
+        <p class="bio">Link sv dis và dnt ở dưới ạ 💗</p>
+
+        <div class="donate-neon-wrapper">
+          <div class="donate-box">
+            <div class="donate-title">Donate Tà Tữa <span class="custom-heart">💗</span></div>
+            <p class="donate-desc">Quét mã QR để ủng hộ mình ly tà tữa <span class="custom-heart">💗</span></p>
+            <div class="qr-box-donate">
+              <img id="donateQrImg" src="donate.jpg" alt="QR Donate Techcombank" class="qr-img-donate" onerror="this.src='https://img.vietqr.io/image/TCB-19074758620012-compact2.png?accountName=PHAM%20NGUYEN%20BAO%20LAN&addInfo=DONATE%20TA%20TUA'">
+            </div>
+            <div>
+              <button type="button" class="btn-download-qr" onclick="downloadQRCode('donateQrImg', 'QR_Donate_Techcombank.png')">
+                <i class="fa-solid fa-download"></i> Tải ảnh mã QR
+              </button>
+            </div>
+            <div class="bank-details">
+              <div>Ngân hàng: <strong>Techcombank</strong></div>
+              <div class="stk-copy-box">
+                Số TK: <strong id="stkNumber">1907 4758 6200 12</strong>
+                <button type="button" class="btn-copy-stk" onclick="copySTK(this)">
+                  <i class="fa-regular fa-copy"></i> Copy
+                </button>
+              </div>
+              <div style="margin-top: 4px;">Tên tài khoản: <strong>PHAM NGUYEN BAO LAN</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.tiktok.com/@ddtrinh226" target="_blank" rel="noopener noreferrer" class="btn-link">
+            <i class="fa-brands fa-tiktok" style="color: var(--accent-pink);"></i> Kênh TikTok (@ddtrinh226)
+          </a>
+        </div>
+
+        <div class="footer">
+          © @ddtrinh226 • All rights reserved
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copySTK(btn) {
+      const stkClean = "19074758620012";
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(stkClean);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = stkClean;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã chép!';
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    }
+
+    function downloadQRCode(imgId, filename) {
+      const imgElement = document.getElementById(imgId);
+      if (!imgElement || !imgElement.src) return;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const imageObj = new Image();
+      imageObj.crossOrigin = "anonymous";
+      imageObj.onload = function() {
+        canvas.width = imageObj.naturalWidth || imageObj.width;
+        canvas.height = imageObj.naturalHeight || imageObj.height;
+        ctx.drawImage(imageObj, 0, 0);
+        try {
+          const dataURL = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.href = dataURL;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } catch (err) {
+          window.open(imgElement.src, '_blank');
+        }
+      };
+      imageObj.onerror = function() { window.open(imgElement.src, '_blank'); };
+      let srcToFetch = imgElement.src;
+      if (srcToFetch.includes('vietqr.io') && !srcToFetch.includes('t=')) {
+        srcToFetch += (srcToFetch.includes('?') ? '&' : '?') + 't=' + new Date().getTime();
+      }
+      imageObj.src = srcToFetch;
+    }
+  </script>
+</body>
+</html>
