@@ -80,7 +80,6 @@
     .card {
       position: relative;
       width: 100%;
-      /* Làm trong suốt hơn để thấy rõ background phía sau */
       background-color: rgba(255, 253, 252, 0.78);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -183,9 +182,10 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      /* Tăng độ trong suốt cho khung Donate (0.65 thay vì 0.92) */
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 22px;
       padding: 24px 16px;
     }
@@ -203,17 +203,20 @@
 
     .donate-desc {
       font-size: 0.88rem;
-      color: #8c7d91;
+      color: #6b5a70;
       margin-bottom: 16px;
     }
 
     .qr-box-donate {
-      background: #ffffff;
+      /* Tăng độ trong suốt cho khung chứa mã QR (0.75 thay vì 1.0) */
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 18px;
       padding: 10px;
       display: inline-block;
       box-shadow: 0 6px 18px rgba(90, 78, 92, 0.08);
-      border: 1px solid var(--pastel-pink);
+      border: 1px solid rgba(250, 210, 225, 0.6);
     }
 
     .qr-img-donate {
@@ -225,7 +228,7 @@
 
     .btn-download-qr {
       margin-top: 14px;
-      background: rgba(250, 210, 225, 0.35);
+      background: rgba(250, 210, 225, 0.5);
       border: 1px solid var(--pastel-pink);
       color: #b56580;
       padding: 7px 16px;
@@ -248,7 +251,7 @@
     .bank-details {
       margin-top: 16px;
       font-size: 0.88rem;
-      color: #7d6f82;
+      color: #594a5e;
       line-height: 1.6;
     }
 
@@ -261,7 +264,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(198, 210, 253, 0.3);
+      background: rgba(198, 210, 253, 0.4);
       padding: 5px 12px;
       border-radius: 10px;
       border: 1px solid var(--pastel-blue);
@@ -306,7 +309,10 @@
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
       width: 100%;
-      background: rgba(255, 255, 255, 0.92);
+      /* Tăng độ trong suốt cho các nút liên kết (0.8 thay vì 0.92) */
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: var(--text-dark);
       border: 1.5px solid var(--pastel-blue);
       box-shadow: 0 4px 15px rgba(90, 78, 92, 0.05);
@@ -347,7 +353,7 @@
       position: relative;
       width: 100%;
       max-width: 380px;
-      background: rgba(255, 253, 252, 0.96);
+      background: rgba(255, 253, 252, 0.95);
       border: 2px solid var(--pastel-blue);
       border-radius: 26px;
       padding: 26px 20px;
@@ -408,7 +414,7 @@
       width: 100%;
       padding: 10px 0;
       border-radius: 12px;
-      background: rgba(198, 210, 253, 0.2);
+      background: rgba(198, 210, 253, 0.3);
       border: 1px solid var(--pastel-blue);
       color: #7d6f82;
       font-weight: 600;
@@ -418,17 +424,17 @@
     }
 
     .btn-close-discord:hover {
-      background: rgba(198, 210, 253, 0.5);
+      background: rgba(198, 210, 253, 0.6);
       color: var(--text-dark);
     }
 
     .footer {
       margin-top: 16px;
       font-size: 0.78rem;
-      color: #7a6a7c;
+      color: #6e5f70;
       text-align: center;
       font-weight: 600;
-      text-shadow: 0 1px 5px rgba(255, 255, 255, 0.6);
+      text-shadow: 0 1px 5px rgba(255, 255, 255, 0.8);
     }
   </style>
 </head>
@@ -474,7 +480,6 @@
             <i class="fa-brands fa-tiktok" style="color: #b56580;"></i> Kênh TikTok (@ddtrinh226)
           </a>
 
-          <!-- Nút mở Popup Discord -->
           <button type="button" class="btn-link" onclick="openDiscordModal()" style="border: none; width: 100%;">
             <i class="fa-brands fa-discord" style="color: #7289da;"></i> Tham gia Server Discord
           </button>
