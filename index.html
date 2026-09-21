@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg-soft: #FDF8F5;
-      --primary-pink: #F4C7CD;
-      --text-dark: #4A3E3D;
-      --accent-pink: #E36573;
+      --pastel-blue: #C6D2FD;
+      --pastel-pink: #FAD2E1;
+      --pastel-peach: #FDE2E4;
+      --pastel-lavender: #E2ECE9;
+      --text-dark: #5A4E5C;
     }
 
     * {
@@ -27,9 +28,9 @@
       justify-content: center;
       align-items: center;
       padding: 30px 14px 40px;
-      background: linear-gradient(-45deg, #FDF8F5, #F4C7CD, #fae1dc, #FDF8F5);
+      background: linear-gradient(-45deg, #C6D2FD, #FAD2E1, #FDE2E4, #E2ECE9);
       background-size: 300% 300%;
-      animation: softGradient 12s ease infinite;
+      animation: softGradient 14s ease infinite;
       overflow-x: hidden;
       color: var(--text-dark);
     }
@@ -58,8 +59,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 20px 40px rgba(74, 62, 61, 0.12),
-                  0 0 20px rgba(244, 199, 205, 0.5);
+      box-shadow: 0 20px 40px rgba(90, 78, 92, 0.15),
+                  0 0 25px rgba(250, 210, 225, 0.6);
     }
 
     .card-border-wrapper::before {
@@ -67,7 +68,7 @@
       position: absolute;
       width: 160%;
       height: 160%;
-      background: conic-gradient(var(--primary-pink), var(--accent-pink), #ffffff, var(--primary-pink));
+      background: conic-gradient(var(--pastel-blue), var(--pastel-pink), var(--pastel-peach), var(--pastel-blue));
       animation: spin 6s linear infinite;
       z-index: 0;
     }
@@ -79,7 +80,7 @@
     .card {
       position: relative;
       width: 100%;
-      background-color: rgba(253, 248, 245, 0.95);
+      background-color: rgba(255, 253, 252, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-radius: 28px;
@@ -90,7 +91,7 @@
 
     .profile-card {
       text-align: center;
-      background: linear-gradient(rgba(253, 248, 245, 0.88), rgba(253, 248, 245, 0.94)), 
+      background: linear-gradient(rgba(255, 253, 252, 0.88), rgba(255, 253, 252, 0.95)), 
                   url('bg-profile.jpg') center/cover no-repeat !important;
     }
 
@@ -106,7 +107,7 @@
       position: absolute;
       inset: -4px;
       border-radius: 50%;
-      background: linear-gradient(45deg, var(--accent-pink), var(--primary-pink));
+      background: linear-gradient(45deg, var(--pastel-blue), var(--pastel-pink));
       z-index: 0;
       animation: spin 3.5s linear infinite;
       filter: blur(2px);
@@ -118,9 +119,9 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--bg-soft);
+      border: 3px solid #fff;
       z-index: 1;
-      background-color: #f0e6e2;
+      background-color: #f7ede2;
     }
 
     .channel-name {
@@ -132,13 +133,13 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      color: var(--accent-pink);
-      text-shadow: 0 2px 10px rgba(227, 101, 115, 0.2);
+      color: #7b6880;
+      text-shadow: 0 2px 10px rgba(198, 210, 253, 0.5);
     }
 
     .bio {
       font-size: 0.95rem;
-      color: #6e5f5e;
+      color: #7d6f82;
       margin-bottom: 20px;
       line-height: 1.5;
     }
@@ -147,7 +148,7 @@
       display: inline-block;
       vertical-align: middle;
       font-style: normal;
-      color: var(--accent-pink);
+      color: #e09fbe;
     }
 
     .donate-neon-wrapper {
@@ -160,8 +161,8 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 18px;
-      box-shadow: 0 10px 25px rgba(74, 62, 61, 0.08),
-                  0 0 15px rgba(244, 199, 205, 0.4);
+      box-shadow: 0 10px 25px rgba(90, 78, 92, 0.08),
+                  0 0 15px rgba(198, 210, 253, 0.5);
     }
 
     .donate-neon-wrapper::before {
@@ -169,7 +170,7 @@
       position: absolute;
       width: 180%;
       height: 180%;
-      background: conic-gradient(var(--accent-pink), var(--primary-pink), #ffffff, var(--accent-pink));
+      background: conic-gradient(var(--pastel-pink), var(--pastel-peach), var(--pastel-blue), var(--pastel-pink));
       animation: spin 4s linear infinite;
       z-index: 0;
     }
@@ -178,7 +179,7 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border-radius: 20px;
@@ -189,7 +190,7 @@
       font-size: 1.2rem;
       font-weight: 800;
       margin-bottom: 6px;
-      color: var(--accent-pink);
+      color: #d8839d;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -198,7 +199,7 @@
 
     .donate-desc {
       font-size: 0.88rem;
-      color: #7a6a68;
+      color: #8c7d91;
       margin-bottom: 16px;
     }
 
@@ -207,8 +208,8 @@
       border-radius: 16px;
       padding: 8px;
       display: inline-block;
-      box-shadow: 0 4px 16px rgba(74, 62, 61, 0.1);
-      border: 1px solid var(--primary-pink);
+      box-shadow: 0 4px 16px rgba(90, 78, 92, 0.1);
+      border: 1px solid var(--pastel-pink);
     }
 
     .qr-img-donate {
@@ -220,9 +221,9 @@
 
     .btn-download-qr {
       margin-top: 12px;
-      background: rgba(227, 101, 115, 0.1);
-      border: 1px solid var(--accent-pink);
-      color: var(--accent-pink);
+      background: rgba(250, 210, 225, 0.3);
+      border: 1px solid var(--pastel-pink);
+      color: #b56580;
       padding: 6px 14px;
       border-radius: 10px;
       font-size: 0.82rem;
@@ -235,14 +236,14 @@
     }
 
     .btn-download-qr:hover {
-      background: var(--accent-pink);
-      color: #fff;
+      background: var(--pastel-pink);
+      color: #5a4e5c;
     }
 
     .bank-details {
       margin-top: 14px;
       font-size: 0.88rem;
-      color: #6e5f5e;
+      color: #7d6f82;
       line-height: 1.6;
     }
 
@@ -255,16 +256,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(244, 199, 205, 0.25);
+      background: rgba(198, 210, 253, 0.25);
       padding: 4px 10px;
       border-radius: 8px;
-      border: 1px solid var(--primary-pink);
+      border: 1px solid var(--pastel-blue);
       margin-top: 4px;
     }
 
     .btn-copy-stk {
-      background: var(--accent-pink);
-      border: 1px solid var(--accent-pink);
+      background: #8fa3f8;
+      border: 1px solid #8fa3f8;
       color: #fff;
       padding: 3px 9px;
       border-radius: 6px;
@@ -299,24 +300,24 @@
       transition: all 0.25s ease;
       cursor: pointer;
       width: 100%;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       color: var(--text-dark);
-      border: 1.5px solid var(--primary-pink);
-      box-shadow: 0 4px 12px rgba(74, 62, 61, 0.05);
+      border: 1.5px solid var(--pastel-blue);
+      box-shadow: 0 4px 12px rgba(90, 78, 92, 0.05);
     }
 
     .btn-link:hover {
-      background: var(--accent-pink);
-      color: #ffffff;
-      border-color: var(--accent-pink);
+      background: var(--pastel-blue);
+      color: #433647;
+      border-color: #8fa3f8;
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(227, 101, 115, 0.25);
+      box-shadow: 0 6px 16px rgba(198, 210, 253, 0.4);
     }
 
     .footer {
       margin-top: 14px;
       font-size: 0.78rem;
-      color: #8c7a78;
+      color: #9d8eA3;
       text-align: center;
     }
   </style>
@@ -327,7 +328,7 @@
     <div class="card-border-wrapper">
       <div class="card profile-card">
         <div class="avatar-wrapper">
-          <img src="avatar.jpg" alt="Avatar" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Suy&background=F4C7CD&color=4A3E3D'">
+          <img src="avatar.jpg" alt="Avatar" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Suy&background=FAD2E1&color=5A4E5C'">
         </div>
 
         <h1 class="channel-name">Suy 🧸 💜</h1>
@@ -338,29 +339,29 @@
             <div class="donate-title">Donate Tà Tữa <span class="custom-heart">💗</span></div>
             <p class="donate-desc">Quét mã QR để ủng hộ mình ly tà tữa <span class="custom-heart">💗</span></p>
             <div class="qr-box-donate">
-              <img id="donateQrImg" src="donate.jpg" alt="QR Donate Techcombank" class="qr-img-donate" onerror="this.src='https://img.vietqr.io/image/TCB-19074758620012-compact2.png?accountName=PHAM%20NGUYEN%20BAO%20LAN&addInfo=DONATE%20TA%20TUA'">
+              <img id="donateQrImg" src="donate.jpg" alt="QR Donate BIDV" class="qr-img-donate" onerror="this.src='https://img.vietqr.io/image/BIDV-6354065424-compact2.png?accountName=DUONG%20THI%20VIET%20TRINH&addInfo=DONATE%20TA%20TUA'">
             </div>
             <div>
-              <button type="button" class="btn-download-qr" onclick="downloadQRCode('donateQrImg', 'QR_Donate_Techcombank.png')">
+              <button type="button" class="btn-download-qr" onclick="downloadQRCode('donateQrImg', 'QR_Donate_BIDV.png')">
                 <i class="fa-solid fa-download"></i> Tải ảnh mã QR
               </button>
             </div>
             <div class="bank-details">
-              <div>Ngân hàng: <strong>Techcombank</strong></div>
+              <div>Ngân hàng: <strong>BIDV</strong></div>
               <div class="stk-copy-box">
-                Số TK: <strong id="stkNumber">1907 4758 6200 12</strong>
+                Số TK: <strong id="stkNumber">6354 0654 24</strong>
                 <button type="button" class="btn-copy-stk" onclick="copySTK(this)">
                   <i class="fa-regular fa-copy"></i> Copy
                 </button>
               </div>
-              <div style="margin-top: 4px;">Tên tài khoản: <strong>PHAM NGUYEN BAO LAN</strong></div>
+              <div style="margin-top: 4px;">Tên tài khoản: <strong>DUONG THI VIET TRINH</strong></div>
             </div>
           </div>
         </div>
 
         <div class="social-links">
           <a href="https://www.tiktok.com/@ddtrinh226" target="_blank" rel="noopener noreferrer" class="btn-link">
-            <i class="fa-brands fa-tiktok" style="color: var(--accent-pink);"></i> Kênh TikTok (@ddtrinh226)
+            <i class="fa-brands fa-tiktok" style="color: #b56580;"></i> Kênh TikTok (@ddtrinh226)
           </a>
         </div>
 
@@ -373,7 +374,7 @@
 
   <script>
     function copySTK(btn) {
-      const stkClean = "19074758620012";
+      const stkClean = "6354065424";
       if (navigator.clipboard) {
         navigator.clipboard.writeText(stkClean);
       } else {
