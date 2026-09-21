@@ -41,7 +41,7 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
-      z-index: -3;
+      z-index: -2;
     }
 
     .bg-overlay {
@@ -53,45 +53,7 @@
       background: rgba(198, 210, 253, 0.25);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
-      z-index: -2;
-    }
-
-    /* Hiệu ứng cánh hoa anh đào rơi */
-    .sakura-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
       z-index: -1;
-      overflow: hidden;
-    }
-
-    .petal {
-      position: absolute;
-      background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 100%);
-      border-radius: 150% 0 150% 0;
-      animation: fall linear infinite;
-      opacity: 0.8;
-      box-shadow: 0 0 6px rgba(255, 183, 197, 0.6);
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10vh) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.9;
-      }
-      90% {
-        opacity: 0.9;
-      }
-      100% {
-        transform: translateY(110vh) translateX(100vw) rotate(360deg);
-        opacity: 0;
-      }
     }
 
     .container {
@@ -101,6 +63,7 @@
       flex-direction: column;
       gap: 16px;
       align-items: center;
+      position: relative;
       z-index: 1;
     }
 
@@ -131,6 +94,7 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Khung thẻ chính tăng độ trong suốt và chứa hiệu ứng hoa rơi */
     .card {
       position: relative;
       width: 100%;
@@ -141,6 +105,7 @@
       padding: 32px 22px;
       color: var(--text-dark);
       z-index: 1;
+      overflow: hidden; /* Giữ hoa rơi trong phạm vi khung card */
     }
 
     .profile-card {
@@ -149,11 +114,50 @@
                   url('bg-profile.jpg') center/cover no-repeat !important;
     }
 
+    /* Hiệu ứng cánh hoa anh đào rơi bên trong card */
+    .sakura-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 100%);
+      border-radius: 150% 0 150% 0;
+      animation: fall linear infinite;
+      opacity: 0.85;
+      box-shadow: 0 0 6px rgba(255, 183, 197, 0.7);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      90% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(450px) translateX(60px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     .avatar-wrapper {
       position: relative;
       width: 115px;
       height: 115px;
       margin: 0 auto 16px;
+      z-index: 6;
     }
 
     .avatar-wrapper::before {
@@ -190,6 +194,8 @@
       gap: 6px;
       color: #4e3d54;
       text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(244, 199, 205, 0.6);
+      position: relative;
+      z-index: 6;
     }
 
     .bio {
@@ -199,6 +205,8 @@
       line-height: 1.5;
       font-weight: 600;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 15px rgba(198, 210, 253, 0.5);
+      position: relative;
+      z-index: 6;
     }
 
     .custom-heart {
@@ -220,6 +228,7 @@
       margin-bottom: 20px;
       box-shadow: 0 10px 25px rgba(90, 78, 92, 0.08),
                   0 0 15px rgba(198, 210, 253, 0.5);
+      z-index: 6;
     }
 
     .donate-neon-wrapper::before {
@@ -348,6 +357,8 @@
       flex-direction: column;
       gap: 12px;
       margin-bottom: 16px;
+      position: relative;
+      z-index: 6;
     }
 
     .btn-link {
@@ -508,6 +519,8 @@
       text-align: center;
       font-weight: 700;
       text-shadow: 0 1px 6px rgba(255, 255, 255, 0.9);
+      position: relative;
+      z-index: 6;
     }
   </style>
 </head>
@@ -519,12 +532,12 @@
   </video>
   <div class="bg-overlay"></div>
 
-  <!-- Hiệu ứng cánh hoa anh đào rơi -->
-  <div class="sakura-container" id="sakuraContainer"></div>
-
   <div class="container">
     <div class="card-border-wrapper">
       <div class="card profile-card">
+        <!-- Cánh hoa anh đào rơi bên trong khung profile -->
+        <div class="sakura-container" id="sakuraContainer"></div>
+
         <div class="avatar-wrapper">
           <img src="avatar.jpg" alt="Avatar" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Suy&background=FAD2E1&color=5A4E5C'">
         </div>
@@ -566,7 +579,6 @@
             <i class="fa-brands fa-discord" style="color: #7289da;"></i> Tham gia Server Discord
           </button>
 
-          <!-- Thêm liên kết trang cá nhân Discord -->
           <a href="https://discord.com/users/1063690812006875217" target="_blank" rel="noopener noreferrer" class="btn-link">
             <i class="fa-brands fa-discord" style="color: #7289da;"></i> Trang cá nhân Discord
           </a>
@@ -606,23 +618,23 @@
   </div>
 
   <script>
-    /* Tự động sinh hiệu ứng cánh hoa anh đào rơi */
+    /* Tự động sinh hiệu ứng cánh hoa anh đào rơi bên trong khung card */
     function createSakuraPetals() {
       const container = document.getElementById('sakuraContainer');
       if (!container) return;
 
-      const petalCount = 22;
+      const petalCount = 15;
       for (let i = 0; i < petalCount; i++) {
         const petal = document.createElement('div');
         petal.className = 'petal';
         
-        const size = Math.random() * 8 + 8;
+        const size = Math.random() * 6 + 6;
         petal.style.width = `${size}px`;
         petal.style.height = `${size * 0.8}px`;
-        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.left = `${Math.random() * 100}%`;
         
-        const duration = Math.random() * 6 + 6;
-        const delay = Math.random() * 8;
+        const duration = Math.random() * 4 + 4;
+        const delay = Math.random() * 6;
         petal.style.animationDuration = `${duration}s`;
         petal.style.animationDelay = `${delay}s`;
 
