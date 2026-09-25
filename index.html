@@ -33,6 +33,7 @@
       position: relative;
     }
 
+    /* Video Background ngoài màn hình */
     .bg-video {
       position: fixed;
       top: 0;
@@ -889,11 +890,13 @@
 </head>
 <body>
 
-  <video class="bg-video" autoplay loop muted playsinline>
+  <!-- Video Background ngoài màn hình -->
+  <video id="bgVideo" class="bg-video" autoplay loop muted playsinline>
     <source src="bg-video.mp4" type="video/mp4">
   </video>
   <div class="bg-overlay"></div>
 
+  <!-- Thẻ Audio phát nhạc từ playlist/music.mp3 -->
   <audio id="bgAudio" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
@@ -1048,6 +1051,7 @@
 
   <script>
     const audio = document.getElementById('bgAudio');
+    const bgVideo = document.getElementById('bgVideo');
     const playPauseBtn = document.getElementById('btnPlayPause');
     const playPauseIcon = document.getElementById('playPauseIcon');
     const playerBar = document.getElementById('musicPlayerBar');
@@ -1058,17 +1062,23 @@
     const playlist = [{ title: "Hotaru", artist: "Fujita Maiko", src: "music.mp3" }];
     let currentSongIndex = 0;
 
+    // Thiết lập âm lượng mặc định
+    if (bgVideo) bgVideo.volume = 0.6;
     if (audio) {
       audio.volume = 0.7;
 
+      // KHI BẮT ĐẦU NGHE NHẠC: TẮT TIẾNG VIDEO NỀN
       audio.addEventListener('play', () => {
         if (playPauseIcon) playPauseIcon.className = "fa-solid fa-pause";
         if (playerBar) playerBar.classList.add('playing');
+        if (bgVideo) bgVideo.muted = true; // Tắt tiếng video nền
       });
 
+      // KHI TẠM DỪNG BÀI HÁT: BẬT LẠI TIẾNG VIDEO NỀN
       audio.addEventListener('pause', () => {
         if (playPauseIcon) playPauseIcon.className = "fa-solid fa-play";
         if (playerBar) playerBar.classList.remove('playing');
+        if (bgVideo) bgVideo.muted = false; // Bật lại tiếng video nền
       });
 
       audio.addEventListener('error', () => {
@@ -1078,6 +1088,15 @@
         }
       });
     }
+
+    // Tự động bật tiếng video nền ngay khi chạm vào trang lần đầu tiên
+    document.addEventListener('click', function enableVideoAudioOnFirstClick() {
+      // Chỉ bật tiếng video nếu lúc đó người dùng chưa bấm nghe nhạc ở thanh phát nhạc
+      if (bgVideo && bgVideo.muted && (!audio || audio.paused)) {
+        bgVideo.muted = false;
+        bgVideo.play().catch(() => {});
+      }
+    }, { once: true });
 
     function togglePlayMusic() {
       if (!audio) return;
