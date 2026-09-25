@@ -33,7 +33,6 @@
       position: relative;
     }
 
-    /* Video Background ngoài màn hình */
     .bg-video {
       position: fixed;
       top: 0;
@@ -67,7 +66,7 @@
       z-index: 1;
     }
 
-    /* THANH PHÁT NHẠC NỔI BẬT & LUNG LINH */
+    /* THANH PHÁT NHẠC */
     .music-player-bar-wrapper {
       position: relative;
       width: 100%;
@@ -77,10 +76,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 12px 30px rgba(244, 114, 182, 0.28),
-                  0 0 22px rgba(198, 210, 253, 0.6);
+      box-shadow: 0 12px 30px rgba(244, 114, 182, 0.28), 0 0 22px rgba(198, 210, 253, 0.6);
       z-index: 10;
-      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-height: 120px;
+      transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), max-height 0.45s ease, opacity 0.4s ease, margin 0.4s ease;
     }
 
     .music-player-bar-wrapper::before {
@@ -95,15 +94,23 @@
 
     .music-player-bar-wrapper:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 36px rgba(244, 114, 182, 0.38),
-                  0 0 28px rgba(198, 210, 253, 0.8);
+      box-shadow: 0 16px 36px rgba(244, 114, 182, 0.38), 0 0 28px rgba(198, 210, 253, 0.8);
+    }
+
+    .music-player-bar-wrapper.collapsed {
+      max-height: 0 !important;
+      opacity: 0 !important;
+      padding: 0 !important;
+      margin-top: -8px !important;
+      margin-bottom: -16px !important;
+      pointer-events: none !important;
+      transform: translateY(-18px) scale(0.92) !important;
     }
 
     .music-player-bar {
       position: relative;
       z-index: 1;
       width: 100%;
-      /* Giảm độ trong suốt (tăng độ đậm nền lên 0.94) và tăng backdrop-filter để nội dung hiển thị sắc nét hơn */
       background: rgba(255, 253, 252, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -117,7 +124,6 @@
       transition: all 0.3s ease;
     }
 
-    /* Đĩa than avatar phát sáng nhịp đập khi phát nhạc */
     .music-thumb-wrapper {
       position: relative;
       width: 48px;
@@ -147,7 +153,6 @@
       display: block;
     }
 
-    /* Tâm trục đĩa than mạ vàng hồng */
     .music-disc-dot {
       position: absolute;
       top: 50%;
@@ -187,7 +192,6 @@
       letter-spacing: 0.2px;
     }
 
-    /* Sóng âm thanh động (Audio visualizer equalizer) */
     .music-equalizer {
       display: inline-flex;
       align-items: flex-end;
@@ -205,18 +209,10 @@
       transition: height 0.2s ease;
     }
 
-    .music-player-bar.playing .music-bar:nth-child(1) {
-      animation: soundWave 0.7s ease-in-out infinite alternate;
-    }
-    .music-player-bar.playing .music-bar:nth-child(2) {
-      animation: soundWave 0.5s ease-in-out infinite 0.15s alternate;
-    }
-    .music-player-bar.playing .music-bar:nth-child(3) {
-      animation: soundWave 0.85s ease-in-out infinite 0.3s alternate;
-    }
-    .music-player-bar.playing .music-bar:nth-child(4) {
-      animation: soundWave 0.6s ease-in-out infinite 0.2s alternate;
-    }
+    .music-player-bar.playing .music-bar:nth-child(1) { animation: soundWave 0.7s ease-in-out infinite alternate; }
+    .music-player-bar.playing .music-bar:nth-child(2) { animation: soundWave 0.5s ease-in-out infinite 0.15s alternate; }
+    .music-player-bar.playing .music-bar:nth-child(3) { animation: soundWave 0.85s ease-in-out infinite 0.3s alternate; }
+    .music-player-bar.playing .music-bar:nth-child(4) { animation: soundWave 0.6s ease-in-out infinite 0.2s alternate; }
 
     @keyframes soundWave {
       0% { height: 3px; }
@@ -241,7 +237,6 @@
       gap: 8px;
     }
 
-    /* Nút Play/Pause chính rực rỡ gradient */
     .btn-play-pause-main {
       background: linear-gradient(135deg, #f472b6, #c084fc);
       border: 1.5px solid rgba(255, 255, 255, 0.9);
@@ -261,10 +256,6 @@
     .btn-play-pause-main:hover {
       transform: scale(1.12);
       box-shadow: 0 6px 18px rgba(244, 114, 182, 0.65);
-    }
-
-    .btn-play-pause-main:active {
-      transform: scale(0.96);
     }
 
     .btn-music-ctrl {
@@ -297,7 +288,6 @@
       padding: 4px 9px;
       border-radius: 14px;
       border: 1px solid rgba(198, 210, 253, 0.65);
-      box-shadow: 0 2px 8px rgba(90, 78, 92, 0.05);
     }
 
     .volume-box i {
@@ -312,36 +302,6 @@
       cursor: pointer;
     }
 
-    /* Nút tam giác và hiệu ứng thu gọn thanh âm nhạc */
-    .btn-toggle-triangle {
-      font-size: 0.95rem !important;
-      color: #b56580;
-      transition: all 0.25s ease;
-    }
-
-    .btn-toggle-triangle:hover {
-      background: var(--pastel-pink);
-      color: #4a3e4d;
-      transform: scale(1.1);
-    }
-
-    .music-player-bar-wrapper {
-      max-height: 120px;
-      transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), max-height 0.45s ease, opacity 0.4s ease, margin 0.4s ease;
-    }
-
-    /* Trạng thái thu gọn mượt mà khi bấm nút tam giác */
-    .music-player-bar-wrapper.collapsed {
-      max-height: 0 !important;
-      opacity: 0 !important;
-      padding: 0 !important;
-      margin-top: -8px !important;
-      margin-bottom: -16px !important;
-      pointer-events: none !important;
-      transform: translateY(-18px) scale(0.92) !important;
-    }
-
-    /* Nút tam giác nhỏ xinh hiển thị để mở lại thanh nhạc */
     .btn-restore-music {
       display: none;
       align-items: center;
@@ -357,32 +317,23 @@
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(244, 114, 182, 0.25);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: popInCenter 0.35s ease;
+      transition: all 0.4s ease;
       z-index: 10;
-      opacity: 1;
     }
 
-    .btn-restore-music.visible {
-      display: inline-flex;
-    }
-
-    /* Tự động tăng độ trong suốt khi không chạm tới sau 3s */
+    .btn-restore-music.visible { display: inline-flex; }
     .btn-restore-music.idle-transparent {
-      opacity: 0.25 !important;
-      background: rgba(255, 253, 252, 0.35) !important;
-      border-color: rgba(250, 210, 225, 0.4) !important;
-      box-shadow: 0 4px 10px rgba(90, 78, 92, 0.08) !important;
+      opacity: 0.3 !important;
+      background: rgba(255, 253, 252, 0.4) !important;
     }
-
     .btn-restore-music:hover {
       opacity: 1 !important;
       background: var(--pastel-pink) !important;
       color: #3b2a3f !important;
       transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 10px 24px rgba(244, 114, 182, 0.4) !important;
     }
 
+    /* CARD PROFILE */
     .card-border-wrapper {
       position: relative;
       width: 100%;
@@ -392,10 +343,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 25px 50px rgba(90, 78, 92, 0.22),
-                  0 0 30px rgba(250, 210, 225, 0.7);
-      /* Đảm bảo transition mượt mà cho hiệu ứng tan biến và xuất hiện */
+      box-shadow: 0 25px 50px rgba(90, 78, 92, 0.22), 0 0 30px rgba(250, 210, 225, 0.7);
       transition: opacity 0.5s ease;
+      will-change: clip-path;
     }
 
     .card-border-wrapper::before {
@@ -408,9 +358,7 @@
       z-index: 0;
     }
 
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
 
     .card {
       position: relative;
@@ -431,7 +379,6 @@
                   url('bg-profile.jpg') center/cover no-repeat !important;
     }
 
-    /* Hiệu ứng mây xế chiều trôi ở phần trên profile */
     .sunset-clouds-area {
       position: absolute;
       top: 0;
@@ -459,23 +406,13 @@
     }
 
     .cloud-1 {
-      width: 140px;
-      height: 40px;
-      top: 25px;
-      left: -150px;
-      animation-duration: 22s;
+      width: 140px; height: 40px; top: 25px; left: -150px; animation-duration: 22s;
     }
     .cloud-1::before { width: 60px; height: 60px; top: -30px; left: 25px; }
     .cloud-1::after { width: 50px; height: 50px; top: -20px; left: 70px; }
 
     .cloud-2 {
-      width: 110px;
-      height: 32px;
-      top: 75px;
-      left: -120px;
-      animation-duration: 16s;
-      animation-delay: 5s;
-      opacity: 0.45;
+      width: 110px; height: 32px; top: 75px; left: -120px; animation-duration: 16s; animation-delay: 5s; opacity: 0.45;
     }
     .cloud-2::before { width: 45px; height: 45px; top: -22px; left: 20px; }
     .cloud-2::after { width: 40px; height: 40px; top: -18px; left: 50px; }
@@ -559,8 +496,7 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(90, 78, 92, 0.08),
-                  0 0 15px rgba(198, 210, 253, 0.5);
+      box-shadow: 0 10px 25px rgba(90, 78, 92, 0.08), 0 0 15px rgba(198, 210, 253, 0.5);
       z-index: 6;
     }
 
@@ -652,11 +588,6 @@
       font-weight: 500;
     }
 
-    .bank-details strong {
-      color: var(--text-dark);
-      font-weight: 700;
-    }
-
     .stk-copy-box {
       display: inline-flex;
       align-items: center;
@@ -727,7 +658,6 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
       transform: rotate(25deg);
       pointer-events: none;
-      transition: none;
     }
 
     .btn-link:hover::after {
@@ -749,7 +679,7 @@
       fill: currentColor;
     }
 
-    /* POPUP DISCORD */
+    /* MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -762,15 +692,12 @@
       align-items: center;
       padding: 16px;
     }
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal-overlay.active { display: flex; }
 
     .discord-modal-box {
-      position: relative;
       width: 100%;
       max-width: 380px;
-      background: rgba(255, 253, 252, 0.9);
+      background: rgba(255, 253, 252, 0.95);
       border: 2px solid var(--pastel-blue);
       border-radius: 26px;
       padding: 26px 20px;
@@ -856,7 +783,7 @@
       z-index: 6;
     }
 
-    /* Container chứa các cánh hoa anh đào */
+    /* SAKURA & HIỆU ỨNG TAN BIẾN */
     .sakura-container {
       position: fixed;
       inset: 0;
@@ -865,7 +792,6 @@
       overflow: hidden;
     }
 
-    /* Cánh hoa anh đào sinh động với chuyển động lượn sóng tự nhiên */
     .sakura-petal {
       position: fixed;
       pointer-events: none;
@@ -874,6 +800,7 @@
       opacity: 0.95;
       filter: drop-shadow(0 0 5px rgba(255, 141, 161, 0.6));
       animation: sakuraFlutter linear forwards;
+      will-change: transform, opacity;
     }
 
     .sakura-petal::after {
@@ -903,7 +830,6 @@
       }
     }
 
-    /* Đốm bụi tiên lấp lánh dọc theo đường tan biến */
     .sakura-sparkle {
       position: fixed;
       pointer-events: none;
@@ -920,7 +846,6 @@
       100% { opacity: 0; transform: translateY(-40px) scale(0.2); }
     }
 
-    /* Nút Trở lại Profile nổi bật giữa màn hình */
     .return-home-btn-wrapper {
       display: none;
       position: fixed;
@@ -964,23 +889,19 @@
 </head>
 <body>
 
-  <!-- Video Background ngoài màn hình -->
   <video class="bg-video" autoplay loop muted playsinline>
     <source src="bg-video.mp4" type="video/mp4">
   </video>
   <div class="bg-overlay"></div>
 
-  <!-- Thẻ Audio phát nhạc ẩn -->
   <audio id="bgAudio" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <div class="container">
-
-    <!-- THANH PHÁT NHẠC NỔI BẬT VIỀN CONIC & SÓNG ÂM THANH -->
+    <!-- THANH PHÁT NHẠC -->
     <div class="music-player-bar-wrapper">
       <div id="musicPlayerBar" class="music-player-bar">
-        <!-- ĐĨA NHẠC AVATAR.JPG NỔI BẬT -->
         <div class="music-thumb-wrapper" title="Đang phát: Hotaru">
           <img src="avatar.jpg" alt="Avatar Đĩa Nhạc" class="music-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Suy&background=FAD2E1&color=5A4E5C'">
           <div class="music-disc-dot"></div>
@@ -989,7 +910,6 @@
         <div class="music-info">
           <div class="music-title-row">
             <span id="musicTitle" class="music-title">Hotaru</span>
-            <!-- Biểu tượng sóng nhạc động -->
             <div class="music-equalizer" title="Đang phát âm thanh">
               <span class="music-bar"></span>
               <span class="music-bar"></span>
@@ -1003,20 +923,16 @@
         </div>
 
         <div class="music-controls">
-          <!-- Nút Play / Pause gradient nổi bật -->
           <button type="button" id="btnPlayPause" class="btn-play-pause-main" onclick="togglePlayMusic()" title="Play/Pause">
             <i id="playPauseIcon" class="fa-solid fa-play"></i>
           </button>
-          <!-- Nút Chuyển bài -->
           <button type="button" class="btn-music-ctrl" onclick="skipMusic()" title="Chuyển bài">
             <i class="fa-solid fa-forward-step"></i>
           </button>
-          <!-- Thanh điều chỉnh âm lượng -->
           <div class="volume-box" title="Âm lượng">
             <i class="fa-solid fa-volume-high"></i>
             <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.05" value="0.7" onchange="changeVolume(this.value)" oninput="changeVolume(this.value)">
           </div>
-          <!-- Nút tam giác thu gọn/ẩn thanh nhạc -->
           <button type="button" class="btn-music-ctrl btn-toggle-triangle" onclick="toggleMusicBar()" title="Ẩn thanh nhạc">
             <i class="fa-solid fa-caret-up"></i>
           </button>
@@ -1024,15 +940,14 @@
       </div>
     </div>
 
-    <!-- Nút tam giác nhỏ gọn xuất hiện khi thanh nhạc đang ẩn -->
     <button type="button" id="btnRestoreMusicBar" class="btn-restore-music" onclick="toggleMusicBar()" title="Hiện lại thanh nhạc">
       <i class="fa-solid fa-caret-down"></i> Hiện thanh nhạc 🎵
     </button>
 
+    <!-- CARD CHÍNH -->
     <div id="cardBorderWrapper" class="card-border-wrapper">
       <div class="card profile-card">
         
-        <!-- Đám mây xế chiều trôi nhẹ nhàng ở phần trên -->
         <div class="sunset-clouds-area">
           <div class="cloud cloud-1"></div>
           <div class="cloud cloud-2"></div>
@@ -1045,6 +960,7 @@
         <h1 class="channel-name">Suy 🧸 💜</h1>
         <p class="bio">Link sv dis và dnt ở dưới ạ 💗</p>
 
+        <!-- DONATE BOX -->
         <div class="donate-neon-wrapper">
           <div class="donate-box">
             <div class="donate-title">Donate Tà Tữa <span class="custom-heart">💗</span></div>
@@ -1070,6 +986,7 @@
           </div>
         </div>
 
+        <!-- SOCIAL LINKS -->
         <div class="social-links">
           <a href="https://www.tiktok.com/@ddtrinh226" target="_blank" rel="noopener noreferrer" class="btn-link">
             <i class="fa-brands fa-tiktok" style="color: #b56580;"></i> Oh my toptop (@ddtrinh226)
@@ -1090,7 +1007,6 @@
             Hỗ trợ e si bánh mì
           </a>
 
-          <!-- Nút kích hoạt điều bất ngờ cánh hoa tan biến từ dưới lên -->
           <button type="button" class="btn-link" onclick="triggerBottomUpDissolve()" style="border: 2px dashed #f472b6; background: rgba(253, 226, 228, 0.65);">
             <i class="fa-solid fa-wand-magic-sparkles" style="color: #ec4899;"></i> Điều bất ngờ 🌸
           </button>
@@ -1103,17 +1019,15 @@
     </div>
   </div>
 
-  <!-- Nút Trở lại Profile hiện lên giữa màn hình khi tan biến xong -->
   <div id="returnHomeWrapper" class="return-home-btn-wrapper">
     <button type="button" class="btn-return-home" onclick="resetProfileCard()">
       <i class="fa-solid fa-rotate-left"></i> Trở lại Profile 🌸
     </button>
   </div>
 
-  <!-- Container chứa hoa anh đào bay -->
   <div id="sakuraContainer" class="sakura-container"></div>
 
-  <!-- POPUP CHỌN SERVER DISCORD -->
+  <!-- MODAL DISCORD -->
   <div id="discordModal" class="modal-overlay" onclick="closeDiscordModal(event)">
     <div class="discord-modal-box" onclick="event.stopPropagation()">
       <h3 class="discord-modal-title"><i class="fa-brands fa-discord"></i> Chọn Server Discord</h3>
@@ -1123,7 +1037,7 @@
         <a href="https://discord.com/invite/HfpRPsNwfq" target="_blank" rel="noopener noreferrer" class="btn-discord-option">
           <i class="fa-solid fa-server"></i> Server Discord Chính
         </a>
-        <a href="https://discord.gg/RDZB9ke7f8" target="_blank" rel="noopener noreferrer" class="btn-discord-option" style="background: #9b59b6;">
+        <a href="https://discord.gg/chisieo" target="_blank" rel="noopener noreferrer" class="btn-discord-option" style="background: #9b59b6;">
           <i class="fa-solid fa-users"></i> Nơi những con bò tụ tập 
         </a>
       </div>
@@ -1133,7 +1047,6 @@
   </div>
 
   <script>
-    /* LOGIC PHÁT NHẠC */
     const audio = document.getElementById('bgAudio');
     const playPauseBtn = document.getElementById('btnPlayPause');
     const playPauseIcon = document.getElementById('playPauseIcon');
@@ -1141,33 +1054,25 @@
     const musicTitle = document.getElementById('musicTitle');
     const musicArtist = document.getElementById('musicArtist');
 
-    // Nguồn nhạc dự phòng nhẹ nhàng khi chưa tìm thấy file music.mp3 cục bộ
     const FALLBACK_MUSIC = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3";
-
-    const playlist = [
-      { title: "Hotaru", artist: "Fujita Maiko", src: "music.mp3" }
-    ];
+    const playlist = [{ title: "Hotaru", artist: "Fujita Maiko", src: "music.mp3" }];
     let currentSongIndex = 0;
 
     if (audio) {
       audio.volume = 0.7;
 
-      // Lắng nghe sự kiện play: đĩa than xoay, sóng nhạc nhảy, icon đổi thành Pause
       audio.addEventListener('play', () => {
         if (playPauseIcon) playPauseIcon.className = "fa-solid fa-pause";
         if (playerBar) playerBar.classList.add('playing');
       });
 
-      // Lắng nghe sự kiện pause: đĩa than dừng, sóng nhạc hạ, icon đổi thành Play
       audio.addEventListener('pause', () => {
         if (playPauseIcon) playPauseIcon.className = "fa-solid fa-play";
         if (playerBar) playerBar.classList.remove('playing');
       });
 
-      // Nếu file music.mp3 chưa có trong thư mục, tự động dùng link dự phòng để bạn test được ngay
       audio.addEventListener('error', () => {
         if (audio.src !== FALLBACK_MUSIC) {
-          console.warn("Không tìm thấy file music.mp3 cục bộ, chuyển sang nguồn dự phòng...");
           audio.src = FALLBACK_MUSIC;
           audio.load();
         }
@@ -1176,33 +1081,15 @@
 
     function togglePlayMusic() {
       if (!audio) return;
-
       if (audio.paused) {
-        // Đổi trạng thái ngay để giao diện phản hồi mượt mà
-        if (playPauseIcon) playPauseIcon.className = "fa-solid fa-pause";
-        if (playerBar) playerBar.classList.add('playing');
-
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(err => {
-            console.warn("Lỗi autoplay hoặc chưa có file, đang chuyển sang nguồn dự phòng:", err);
-            // Nạp nguồn dự phòng và phát
-            if (audio.src !== FALLBACK_MUSIC) {
-              audio.src = FALLBACK_MUSIC;
-              audio.play().catch(() => {
-                if (playPauseIcon) playPauseIcon.className = "fa-solid fa-play";
-                if (playerBar) playerBar.classList.remove('playing');
-              });
-            } else {
-              if (playPauseIcon) playPauseIcon.className = "fa-solid fa-play";
-              if (playerBar) playerBar.classList.remove('playing');
-            }
-          });
-        }
+        audio.play().catch(() => {
+          if (audio.src !== FALLBACK_MUSIC) {
+            audio.src = FALLBACK_MUSIC;
+            audio.play().catch(() => {});
+          }
+        });
       } else {
         audio.pause();
-        if (playPauseIcon) playPauseIcon.className = "fa-solid fa-play";
-        if (playerBar) playerBar.classList.remove('playing');
       }
     }
 
@@ -1212,25 +1099,21 @@
       audio.src = playlist[currentSongIndex].src;
       if (musicTitle) musicTitle.textContent = playlist[currentSongIndex].title;
       if (musicArtist) musicArtist.textContent = playlist[currentSongIndex].artist;
-      audio.play().catch(err => console.log("Skip error:", err));
+      audio.play().catch(() => {});
     }
 
     function changeVolume(val) {
       if (audio) audio.volume = parseFloat(val);
     }
 
-    /* ẨN / HIỆN THANH PHÁT NHẠC VÀ ĐẾM 3 GIÂY ĐỂ TĂNG ĐỘ TRONG SUỐT */
+    /* ẨN / HIỆN THANH NHẠC */
     let restoreIdleTimer = null;
-
     function resetRestoreIdleTimer() {
       const restoreBtn = document.getElementById('btnRestoreMusicBar');
       if (!restoreBtn || !restoreBtn.classList.contains('visible')) return;
 
-      // Đưa về độ mờ bình thường khi có tương tác
       restoreBtn.classList.remove('idle-transparent');
-
       clearTimeout(restoreIdleTimer);
-      // Đếm ngược 3 giây không đụng tới sẽ tăng độ trong suốt
       restoreIdleTimer = setTimeout(() => {
         if (restoreBtn.classList.contains('visible') && !restoreBtn.matches(':hover')) {
           restoreBtn.classList.add('idle-transparent');
@@ -1251,13 +1134,11 @@
           resetRestoreIdleTimer();
         } else {
           restoreBtn.classList.remove('visible');
-          restoreBtn.classList.remove('idle-transparent');
           clearTimeout(restoreIdleTimer);
         }
       }
     }
 
-    // Lắng nghe di chuột / chạm để phục hồi độ rõ nét và đếm lại 3 giây
     const restoreBtnElem = document.getElementById('btnRestoreMusicBar');
     if (restoreBtnElem) {
       ['mouseenter', 'mousemove', 'touchstart'].forEach(evt => {
@@ -1268,9 +1149,7 @@
       });
 
       ['mouseleave', 'touchend'].forEach(evt => {
-        restoreBtnElem.addEventListener(evt, () => {
-          resetRestoreIdleTimer();
-        });
+        restoreBtnElem.addEventListener(evt, resetRestoreIdleTimer);
       });
     }
 
@@ -1286,7 +1165,7 @@
 
     function copySTK(btn) {
       const stkClean = "6354065424";
-      if (navigator.clipboard) {
+      if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(stkClean);
       } else {
         const ta = document.createElement("textarea");
@@ -1304,6 +1183,7 @@
     function downloadQRCode(imgId, filename) {
       const imgElement = document.getElementById(imgId);
       if (!imgElement || !imgElement.src) return;
+
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       const imageObj = new Image();
@@ -1320,22 +1200,23 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-        } catch (err) {
+        } catch {
           window.open(imgElement.src, '_blank');
         }
       };
-      imageObj.onerror = function() { window.open(imgElement.src, '_blank'); };
+      imageObj.onerror = () => window.open(imgElement.src, '_blank');
       let srcToFetch = imgElement.src;
       if (srcToFetch.includes('vietqr.io') && !srcToFetch.includes('t=')) {
-        srcToFetch += (srcToFetch.includes('?') ? '&' : '?') + 't=' + new Date().getTime();
+        srcToFetch += (srcToFetch.includes('?') ? '&' : '?') + 't=' + Date.now();
       }
       imageObj.src = srcToFetch;
     }
 
+    /* TAN BIẾN VÀ TẠO CÁNH HOA */
     let dissolveAnimationId = null;
     let isDissolving = false;
+    let petalTimeouts = [];
 
-    // Hiệu ứng tan biến quét từng mm từ dưới lên: mép cắt tới đâu hoa anh đào rộ nở và bay lên tới đó
     function triggerBottomUpDissolve() {
       if (isDissolving) return;
 
@@ -1349,28 +1230,22 @@
       returnBtn.style.display = 'none';
 
       const rect = cardWrapper.getBoundingClientRect();
-      const duration = 4200; // Thời gian tan biến mượt mà (4.2 giây)
+      const duration = 4000;
       const startTime = performance.now();
 
       function step(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-
-        // Đường cắt đi từ 0% (dưới cùng) lên 100% (đỉnh thẻ)
         const percent = progress * 100;
-        cardWrapper.style.clipPath = `inset(0 0 ${percent}% 0 round 32px 32px 32px 32px)`;
+        cardWrapper.style.clipPath = `inset(0 0 ${percent}% 0 round 32px)`;
 
-        // Vị trí Y thực tế của mép đang tan biến trên màn hình
         const currentY = rect.bottom - (progress * rect.height);
 
-        // Sinh từ 2-4 cánh hoa ngay tại vị trí mép cắt
-        if (progress < 0.99) {
+        if (progress < 0.98) {
           const spawnCount = Math.floor(Math.random() * 3) + 2;
           for (let i = 0; i < spawnCount; i++) {
             createPetalAtEdge(container, rect, currentY);
           }
-
-          // Thêm đốm sáng lấp lánh dọc viền
           if (Math.random() > 0.4) {
             createSparkleAtEdge(container, rect, currentY);
           }
@@ -1379,7 +1254,6 @@
         if (progress < 1) {
           dissolveAnimationId = requestAnimationFrame(step);
         } else {
-          // Hoàn tất tan biến: ẩn card hoàn toàn và hiển thị nút trở lại
           cardWrapper.style.visibility = 'hidden';
           cardWrapper.style.opacity = '0';
           returnBtn.style.display = 'block';
@@ -1390,17 +1264,15 @@
       dissolveAnimationId = requestAnimationFrame(step);
     }
 
-    // Tạo cánh hoa bay lên xuất phát từ đúng vị trí đường tan biến
     function createPetalAtEdge(container, rect, yPos) {
       const petal = document.createElement('div');
       petal.className = 'sakura-petal';
 
-      // Phân bổ ngẫu nhiên theo chiều rộng của thẻ profile
       const xPos = rect.left + Math.random() * rect.width;
-      const width = Math.floor(Math.random() * 9) + 11; // 11px - 20px
+      const width = Math.floor(Math.random() * 9) + 11;
       const height = width * (0.65 + Math.random() * 0.2);
-      const driftX = (Math.random() - 0.45) * 160; // Gió thổi dạt nhẹ sang bên
-      const duration = (Math.random() * 1.0 + 1.4).toFixed(2); // 1.4s - 2.4s
+      const driftX = (Math.random() - 0.45) * 160;
+      const duration = (Math.random() * 0.8 + 1.4).toFixed(2);
 
       petal.style.left = `${xPos}px`;
       petal.style.top = `${yPos - 6 + (Math.random() * 12 - 6)}px`;
@@ -1410,42 +1282,42 @@
       petal.style.animationDuration = `${duration}s`;
 
       container.appendChild(petal);
-      setTimeout(() => { petal.remove(); }, duration * 1000);
+      setTimeout(() => petal.remove(), duration * 1000);
     }
 
-    // Tạo đốm sáng lung linh tại mép tan biến
     function createSparkleAtEdge(container, rect, yPos) {
       const spark = document.createElement('div');
       spark.className = 'sakura-sparkle';
       spark.style.left = `${rect.left + Math.random() * rect.width}px`;
       spark.style.top = `${yPos + (Math.random() * 8 - 4)}px`;
       container.appendChild(spark);
-      setTimeout(() => { spark.remove(); }, 1000);
+      setTimeout(() => spark.remove(), 1000);
     }
 
-    // Phục hồi lại Profile mượt mà với mưa hoa anh đào
     function resetProfileCard() {
       if (dissolveAnimationId) cancelAnimationFrame(dissolveAnimationId);
+      petalTimeouts.forEach(t => clearTimeout(t));
+      petalTimeouts = [];
 
       const cardWrapper = document.getElementById('cardBorderWrapper');
       const returnBtn = document.getElementById('returnHomeWrapper');
       const container = document.getElementById('sakuraContainer');
 
       returnBtn.style.display = 'none';
+      container.innerHTML = '';
 
-      // Reset clip-path và chuẩn bị transition fade-in
       cardWrapper.style.clipPath = 'inset(0 0 0% 0 round 32px)';
       cardWrapper.style.visibility = 'visible';
       cardWrapper.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
       cardWrapper.style.opacity = '0';
       cardWrapper.style.transform = 'translateY(15px) scale(0.97)';
 
-      // Tạo một đợt mưa hoa chào đón quay lại
       const rect = cardWrapper.getBoundingClientRect();
       for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
           createPetalAtEdge(container, rect, rect.top + Math.random() * rect.height);
         }, i * 60);
+        petalTimeouts.push(timeout);
       }
 
       setTimeout(() => {
