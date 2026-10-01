@@ -1040,7 +1040,7 @@
         <a href="https://discord.com/invite/HfpRPsNwfq" target="_blank" rel="noopener noreferrer" class="btn-discord-option">
           <i class="fa-solid fa-server"></i> Server Discord Chính
         </a>
-        <a href="https://discord.gg/chisieo" target="_blank" rel="noopener noreferrer" class="btn-discord-option" style="background: #9b59b6;">
+        <a href="https://discord.gg/RDZB9ke7f8" target="_blank" rel="noopener noreferrer" class="btn-discord-option" style="background: #9b59b6;">
           <i class="fa-solid fa-users"></i> Nơi những con bò tụ tập 
         </a>
       </div>
@@ -1091,7 +1091,6 @@
 
     // Tự động bật tiếng video nền ngay khi chạm vào trang lần đầu tiên
     document.addEventListener('click', function enableVideoAudioOnFirstClick() {
-      // Chỉ bật tiếng video nếu lúc đó người dùng chưa bấm nghe nhạc ở thanh phát nhạc
       if (bgVideo && bgVideo.muted && (!audio || audio.paused)) {
         bgVideo.muted = false;
         bgVideo.play().catch(() => {});
