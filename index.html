@@ -674,6 +674,32 @@
       box-shadow: 0 8px 20px rgba(198, 210, 253, 0.5);
     }
 
+    /* TRẠNG THÁI BẢO TRÌ / TẠM ĐÓNG CHO NÚT LINK */
+    .btn-disabled {
+      opacity: 0.62;
+      pointer-events: none;
+      cursor: not-allowed;
+      filter: grayscale(35%);
+      border-style: dashed;
+      border-color: rgba(181, 101, 128, 0.45);
+      background: rgba(255, 255, 255, 0.38);
+    }
+
+    .btn-disabled::after {
+      display: none;
+    }
+
+    .status-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(250, 210, 225, 0.85);
+      color: #9c4167;
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(196, 93, 140, 0.3);
+      margin-left: 2px;
+    }
+
     .zypage-icon {
       width: 20px;
       height: 20px;
@@ -1003,11 +1029,13 @@
             <i class="fa-brands fa-discord" style="color: #7289da;"></i> Trang cá nhân Discord
           </a>
 
-          <a href="https://zypage.com/trinh2262000" target="_blank" rel="noopener noreferrer" class="btn-link">
+          <!-- LINK ZYPAGE Ở TRẠNG THÁI TẠM ĐÓNG (BẢO TRÌ) -->
+          <a href="https://zypage.com/trinh2262000" target="_blank" rel="noopener noreferrer" class="btn-link btn-disabled" aria-disabled="true" tabindex="-1">
             <svg class="zypage-icon" viewBox="0 0 24 24" style="color: #b56580;">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M7 2H16C17.6569 2 19 3.34315 19 5V8H21C22.1046 8 23 8.89543 23 10V19C23 20.6569 21.6569 22 20 22H11C9.34315 22 8 20.6569 8 19V16H5C3.89543 16 3 15.1046 3 14V5C3 3.34315 4.34315 2 6 2H7ZM8 8V5C8 4.44772 7.55228 4 7 4H6C5.44772 4 5 4.44772 5 5V14C5 14.5523 5.44772 15 6 15H8V11C8 9.34315 9.34315 8 11 8H16V5C16 4.44772 15.5523 4 15 4H8ZM11 10C10.4477 10 10 10.4477 10 11V19C10 19.5523 10.4477 20 11 20H20C20.5523 20 21 19.5523 21 19V10C21 9.44772 20.5523 9 20 9H12C11.4477 9 11 9.44772 11 10ZM13 12H18V17H13V12Z" />
             </svg>
-            Hỗ trợ e si bánh mì
+            <span>Hỗ trợ e si bánh mì</span>
+            <span class="status-badge">Tạm đóng</span>
           </a>
 
           <button type="button" class="btn-link" onclick="triggerBottomUpDissolve()" style="border: 2px dashed #f472b6; background: rgba(253, 226, 228, 0.65);">
